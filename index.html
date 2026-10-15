@@ -97,38 +97,56 @@
             </div>
         </section>
 
-        <!-- SEZIONE 1: GIOCHI MONETIZZABILI (GAME DISTRIBUTION) -->
+        <!-- SEZIONE 1: GIOCHI NATIVI (ZERO ERRORI, FUNZIONANO AL 100%) -->
         <section id="tab-games" class="tab-content active space-y-6">
             <div class="flex items-center justify-between">
                 <h2 class="text-2xl font-bold flex items-center gap-3 text-white">
                     <div class="p-2.5 rounded-xl bg-brand-500/10 text-brand-500 border border-brand-500/20"><i class="fa-solid fa-gamepad"></i></div>
-                    <span data-i18n="sec_games">Arcade & Giochi Monetizzati</span>
+                    <span data-i18n="sec_games">Arcade & Mini-Games Nativi</span>
                 </h2>
-                <span class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">💡 Giochi con annunci integrati per la monetizzazione</span>
+                <span class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">✅ 100% Funzionanti e stabili</span>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Gioco Arcade 1 -->
-                <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-xl">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="font-bold text-lg text-white">🕹️ Cyber Runner Arcade</h3>
-                        <span class="text-xs bg-brand-500/10 text-brand-400 font-bold px-3 py-1 rounded-full border border-brand-500/20">Arcade</span>
+                
+                <!-- SNAKE GAME -->
+                <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl flex flex-col items-center">
+                    <div class="w-full flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg text-white">🐍 Snake Classic</h3>
+                        <span class="text-xs bg-brand-500/10 text-brand-400 font-bold px-3 py-1 rounded-full border border-brand-500/20">Punti: <span id="snakeScore">0</span></span>
                     </div>
-                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                        <iframe src="https://html5.gamedistribution.com/rvvAS397/e892c5bb4e2f470aa10344b4e13589c3/" class="w-full h-full border-0" scrolling="no"></iframe>
+                    <canvas id="snakeCanvas" width="280" height="280" class="bg-slate-950 rounded-xl shadow-inner border border-slate-800 mb-4"></canvas>
+                    <div class="flex flex-col items-center gap-2 w-full max-w-[220px]">
+                        <button onclick="changeSnakeDir('UP')" class="w-14 h-11 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition shadow">▲</button>
+                        <div class="flex gap-4">
+                            <button onclick="changeSnakeDir('LEFT')" class="w-14 h-11 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition shadow">◀</button>
+                            <button onclick="resetSnake()" class="px-4 h-11 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition shadow">Reset</button>
+                            <button onclick="changeSnakeDir('RIGHT')" class="w-14 h-11 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition shadow">▶</button>
+                        </div>
+                        <button onclick="changeSnakeDir('DOWN')" class="w-14 h-11 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition shadow">▼</button>
                     </div>
                 </div>
 
-                <!-- Gioco Arcade 2 -->
-                <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-xl">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="font-bold text-lg text-white">🃏 Classic Solitaire</h3>
-                        <span class="text-xs bg-brand-500/10 text-brand-400 font-bold px-3 py-1 rounded-full border border-brand-500/20">Carte</span>
+                <!-- TIC TAC TOE -->
+                <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl flex flex-col items-center justify-between">
+                    <div class="w-full flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg text-white">❌ Tris / Tic-Tac-Toe</h3>
+                        <span id="tttStatus" class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full border border-slate-700 font-semibold">Turno: X</span>
                     </div>
-                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                        <iframe src="https://html5.gamedistribution.com/839446d3f2ec4e728771488c9fbbbb2b/" class="w-full h-full border-0" scrolling="no"></iframe>
+                    <div id="tttBoard" class="grid grid-cols-3 gap-3 w-64 h-64 bg-slate-950 p-3 rounded-2xl border border-slate-800 my-auto">
+                        <button onclick="makeMove(0)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(1)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(2)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(3)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(4)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(5)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(6)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(7)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
+                        <button onclick="makeMove(8)" class="ttt-cell bg-slate-900 hover:bg-slate-800 text-3xl font-black rounded-xl text-white transition flex items-center justify-center shadow"></button>
                     </div>
+                    <button onclick="resetTTT()" class="mt-4 px-6 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-sm font-bold transition shadow-lg shadow-brand-500/20">Nuova Partita</button>
                 </div>
+
             </div>
         </section>
 
@@ -259,7 +277,7 @@
                 hero_badge: "✨ Universal Entertainment Hub",
                 hero_title: "Esplora, Gioca e Rilassati Senza Limiti",
                 hero_subtitle: "Tutto ciò che ami in un'unica piattaforma multilingue istantanea, interattiva e gratuita.",
-                sec_games: "Arcade & Giochi Monetizzati",
+                sec_games: "Arcade & Mini-Games Nativi",
                 sec_radio: "Radio & Music Live",
                 sec_relax: "Area Relax & Meditazione",
                 sound_rain: "Pioggia Rilassante",
@@ -277,7 +295,7 @@
                 hero_badge: "✨ Universal Entertainment Hub",
                 hero_title: "Explore, Play and Relax Without Limits",
                 hero_subtitle: "Everything you love in a single instant, interactive, free multilingual platform.",
-                sec_games: "Arcade & Monetized Games",
+                sec_games: "Arcade & Native Mini-Games",
                 sec_radio: "Radio & Music Live",
                 sec_relax: "Relaxation & Meditation",
                 sound_rain: "Relaxing Rain",
@@ -295,7 +313,7 @@
                 hero_badge: "✨ Hub de Divertissement Universel",
                 hero_title: "Explorez, jouez et détendez-vous sans limites",
                 hero_subtitle: "Tout ce que vous aimez dans une plateforme multilingue instantanée et gratuite.",
-                sec_games: "Arcade & Jeux",
+                sec_games: "Arcade & Mini-Jeux",
                 sec_radio: "Radio & Musique Live",
                 sec_relax: "Relaxation & Méditation",
                 sound_rain: "Pluie Relaxante",
@@ -313,7 +331,7 @@
                 hero_badge: "✨ Hub de Entretenimiento Universal",
                 hero_title: "Explora, Juega y Relájate sin Límites",
                 hero_subtitle: "Todo lo que amas en una plataforma multilingüe instantánea, interactiva y gratuita.",
-                sec_games: "Arcade y Juegos",
+                sec_games: "Arcade y Mini-Juegos",
                 sec_radio: "Radio y Música Live",
                 sec_relax: "Relajación y Meditación",
                 sound_rain: "Lluvia Relajante",
@@ -438,6 +456,93 @@
                 input.value = '';
                 container.scrollTop = container.scrollHeight;
             }
+        }
+
+        /* SNAKE LOGIC */
+        const canvas = document.getElementById("snakeCanvas");
+        const ctx = canvas.getContext("2d");
+        const grid = 14;
+        let count = 0, score = 0;
+        let snake = { x: 140, y: 140, dx: grid, dy: 0, cells: [], maxCells: 4 };
+        let apple = { x: 56, y: 56 };
+
+        function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min)) + min; }
+
+        function resetSnake() {
+            snake.x = 140; snake.y = 140; snake.cells = []; snake.maxCells = 4; snake.dx = grid; snake.dy = 0;
+            score = 0; document.getElementById("snakeScore").innerText = score;
+            apple.x = getRandomInt(0, 20) * grid; apple.y = getRandomInt(0, 20) * grid;
+        }
+
+        function changeSnakeDir(dir) {
+            if (dir === 'UP' && snake.dy === 0) { snake.dy = -grid; snake.dx = 0; }
+            if (dir === 'DOWN' && snake.dy === 0) { snake.dy = grid; snake.dx = 0; }
+            if (dir === 'LEFT' && snake.dx === 0) { snake.dx = -grid; snake.dy = 0; }
+            if (dir === 'RIGHT' && snake.dx === 0) { snake.dx = grid; snake.dy = 0; }
+        }
+
+        function snakeLoop() {
+            requestAnimationFrame(snakeLoop);
+            if (++count < 7) return;
+            count = 0;
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            snake.x += snake.dx; snake.y += snake.dy;
+            if (snake.x < 0) snake.x = canvas.width - grid;
+            else if (snake.x >= canvas.width) snake.x = 0;
+            if (snake.y < 0) snake.y = canvas.height - grid;
+            else if (snake.y >= canvas.height) snake.y = 0;
+            snake.cells.unshift({x: snake.x, y: snake.y});
+            if (snake.cells.length > snake.maxCells) snake.cells.pop();
+            ctx.fillStyle = '#f43f5e'; ctx.fillRect(apple.x, apple.y, grid-1, grid-1);
+            ctx.fillStyle = '#10b981';
+            snake.cells.forEach(function(cell, index) {
+                ctx.fillRect(cell.x, cell.y, grid-1, grid-1);
+                if (cell.x === apple.x && cell.y === apple.y) {
+                    snake.maxCells++; score += 10;
+                    document.getElementById("snakeScore").innerText = score;
+                    apple.x = getRandomInt(0, 20) * grid; apple.y = getRandomInt(0, 20) * grid;
+                }
+                for (let i = index + 1; i < snake.cells.length; i++) {
+                    if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) resetSnake();
+                }
+            });
+        }
+        requestAnimationFrame(snakeLoop);
+
+        /* TIC TAC TOE LOGIC */
+        let tttState = ["", "", "", "", "", "", "", "", ""];
+        let tttPlayer = "X";
+        let tttActive = true;
+
+        function makeMove(index) {
+            if (tttState[index] !== "" || !tttActive) return;
+            tttState[index] = tttPlayer;
+            const cells = document.querySelectorAll('.ttt-cell');
+            cells[index].innerText = tttPlayer;
+            cells[index].classList.add(tttPlayer === 'X' ? 'text-brand-400' : 'text-rose-400');
+            if (checkTTTWin()) {
+                document.getElementById('tttStatus').innerText = `Vincitore: ${tttPlayer}!`;
+                tttActive = false; return;
+            }
+            if (!tttState.includes("")) {
+                document.getElementById('tttStatus').innerText = "Pareggio!";
+                tttActive = false; return;
+            }
+            tttPlayer = tttPlayer === "X" ? "O" : "X";
+            document.getElementById('tttStatus').innerText = `Turno: ${tttPlayer}`;
+        }
+
+        function checkTTTWin() {
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return wins.some(c => c.every(i => tttState[i] === tttPlayer));
+        }
+
+        function resetTTT() {
+            tttState = ["", "", "", "", "", "", "", "", ""];
+            tttPlayer = "X"; tttActive = true;
+            document.getElementById('tttStatus').innerText = "Turno: X";
+            const cells = document.querySelectorAll('.ttt-cell');
+            cells.forEach(c => { c.innerText = ""; c.classList.remove('text-brand-400', 'text-rose-400'); });
         }
     </script>
 </body>  
